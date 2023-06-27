@@ -12,7 +12,7 @@ enum admin_choice {
 };
 
 enum books_choice {
-    EXIT = 0,
+    BOOKS_EXIT = 0,
     ADD_A_BOOK,
     DELETE_A_BOOK,
     INFO_ABOUT_A_BOOK,
@@ -23,8 +23,17 @@ enum books_choice {
     RECEIVE_A_BOOK
 };
 
+enum student_choice {
+    STUDENT_EXIT = 0,
+    ADD_A_STUDENT,
+    DELETE_A_STUDENT,
+    EDIT_STUDENT_INFO,
+    STUDENT_INFO,
+    STUDENT_SURNAME_SEARCH
+};
+
 void show_books_menu(bool link_to_admin_menu);
 
-void show_students_menu();
+void show_students_menu(bool link_to_admin_menu);
 
 #endif

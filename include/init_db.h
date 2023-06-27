@@ -1,7 +1,16 @@
-#ifndef BIG_HW_DATABASES_H
-#define BIG_HW_DATABASES_H
+#ifndef BIG_HW_INIT_DB_H
+#define BIG_HW_INIT_DB_H
 
 #include <stdbool.h>
+
+#define STUDENTS_DB_FILE_PATH "../db/students.csv"
+#define BOOKS_DB_FILE_PATH "../db/books.csv"
+#define USERS_DB_FILE_PATH "../users.csv"
+#define STUDENTS_BOOKS_DB_FILE_PATH "../student_books.csv"
+
+// typedef struct AllDatabases {
+//
+// } AllDatabases_t;                                    <----- check if it works
 
 typedef struct Students {
     char *record_book_num;

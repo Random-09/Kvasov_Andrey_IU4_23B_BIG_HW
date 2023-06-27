@@ -2,7 +2,7 @@
 #define BIG_HW_AUTHENTICATION_H
 
 #include <stdio.h>
-#include "../include/databases.h"
+#include "../include/init_db.h"
 #include "../sha-2/sha-256.h"
 
 #define DB_CAPACITY 50
@@ -14,5 +14,16 @@
 #define BUFFER 30
 #define MAX_INT 9
 #define MAX_FLOAT 7
+
+int login_index(const char *login, Users_t *users_ptr, int number_of_users);
+
+void str_input(char *input, int data_size);
+
+void password_input(uint8_t hash[SIZE_OF_SHA_256_HASH]);
+
+void uint_to_str(uint8_t hash[], char hash_str[]);
+
+int authentication(Users_t *users_ptr, int number_of_users);
+
 
 #endif

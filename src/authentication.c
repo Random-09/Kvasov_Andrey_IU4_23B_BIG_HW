@@ -30,7 +30,7 @@ void uint_to_str(uint8_t hash[], char hash_str[]) {
     }
 }
 
-void authentication(Users_t *users_ptr, int number_of_users) {
+int authentication(Users_t *users_ptr, int number_of_users) {
     char login[LOGIN_SIZE];
     uint8_t hash[SIZE_OF_SHA_256_HASH];
     char hash_str[HASH_STR_SIZE];
@@ -39,18 +39,15 @@ void authentication(Users_t *users_ptr, int number_of_users) {
     int index = login_index(login, users_ptr, number_of_users);
     if (index == -1) {
         puts("This login is not found in database");
-        return;
+        return -1;
     }
     puts("Enter student's password.");
     password_input(hash);
     uint_to_str(hash, hash_str);
     if (!strcmp(users_ptr[index].hash, hash_str)) {
-        if (users_ptr[index].full_books_access && users_ptr[index].full_student_access)
-            puts("");
-        if (!users_ptr[index].full_books_access && users_ptr[index].full_student_access)
-            puts("");
-        if (users_ptr[index].full_books_access && !users_ptr[index].full_student_access)
-            puts("");
-    } else
+        return index;
+    } else {
         puts("Wrong password\n");
+        return -1;
+    }
 }
