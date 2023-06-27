@@ -1,7 +1,7 @@
 #include "../include/authentication.h"
 
-int login_index(const char *login, Users_t *users_ptr) {
-    for (int i = 0; i < 50; i++) {
+int login_index(const char *login, Users_t *users_ptr, int number_of_users) {
+    for (int i = 0; i < number_of_users; i++) {
         if (!strcmp(login, users_ptr[i].login))
             return i;
     }
@@ -30,13 +30,13 @@ void uint_to_str(uint8_t hash[], char hash_str[]) {
     }
 }
 
-void authentication(Users_t *users_ptr) {
+void authentication(Users_t *users_ptr, int number_of_users) {
     char login[LOGIN_SIZE];
     uint8_t hash[SIZE_OF_SHA_256_HASH];
     char hash_str[HASH_STR_SIZE];
     puts("Enter student's login.");
     str_input(login, LOGIN_SIZE);
-    int index = login_index(login, users_ptr);
+    int index = login_index(login, users_ptr, number_of_users);
     if (index == -1) {
         puts("This login is not found in database");
         return;
@@ -45,7 +45,12 @@ void authentication(Users_t *users_ptr) {
     password_input(hash);
     uint_to_str(hash, hash_str);
     if (!strcmp(users_ptr[index].hash, hash_str)) {
-        puts("Authentication successful\n");
+        if (users_ptr[index].full_books_access && users_ptr[index].full_student_access)
+            puts("");
+        if (!users_ptr[index].full_books_access && users_ptr[index].full_student_access)
+            puts("");
+        if (users_ptr[index].full_books_access && !users_ptr[index].full_student_access)
+            puts("");
     } else
         puts("Wrong password\n");
 }
