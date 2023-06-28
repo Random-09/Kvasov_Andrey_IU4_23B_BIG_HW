@@ -28,8 +28,8 @@ enum student_choice {
     ADD_A_STUDENT,
     DELETE_A_STUDENT,
     EDIT_STUDENT_INFO,
-    STUDENT_INFO,
-    STUDENT_SURNAME_SEARCH
+    STUDENT_INFO_BY_RECORD_BOOK,
+    STUDENT_INFO_BY_SURNAME
 };
 
 void show_admin_menu();

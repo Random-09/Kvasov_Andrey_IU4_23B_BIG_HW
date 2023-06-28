@@ -26,7 +26,7 @@ Student_t *init_students_db(int *number_of_students) {
         strcpy(speciality, speciality_tok);
 
         (*number_of_students)++;
-        realloc(stud_db_ptr, *number_of_students);
+        stud_db_ptr = realloc(stud_db_ptr, *number_of_students);
         Student_t student = {record_book_num, surname, name, faculty, speciality};
         stud_db_ptr[*number_of_students - 1] = student;
     }
@@ -58,7 +58,7 @@ Book_t *init_books_db (int *number_of_books) {
         int available_books = atoi(available_books_tok);
 
         (*number_of_books)++;
-        realloc(book_db_ptr, *number_of_books);
+        book_db_ptr = realloc(book_db_ptr, *number_of_books);
         Book_t book = {ISBN, author, title, total_books, available_books};
         book_db_ptr[*number_of_books - 1] = book;
     }
@@ -88,7 +88,7 @@ User_t *init_users_db(int *number_of_users) {
         bool full_books_access = atoi(full_books_access_tok);
 
         (*number_of_users)++;
-        realloc(user_db_ptr, *number_of_users);
+        user_db_ptr = realloc(user_db_ptr, *number_of_users);
         User_t user = {login, hash, full_student_access, full_books_access};
         user_db_ptr[*number_of_users - 1] = user;
     }
@@ -113,7 +113,7 @@ StudentBook_t *init_student_book_db(int *number_of_student_books) {
         long ISBN = atol(ISBN_tok);
 
         (*number_of_student_books)++;
-        realloc(stud_book_db_ptr, *number_of_student_books);
+        stud_book_db_ptr = realloc(stud_book_db_ptr, *number_of_student_books);
         StudentBook_t student_book = {ISBN, record_book_num, return_date};
         stud_book_db_ptr[*number_of_student_books - 1] = student_book;
     }

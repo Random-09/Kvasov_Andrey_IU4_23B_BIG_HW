@@ -1,7 +1,7 @@
 #include "../include/menus.h"
 #include "../include/log.h"
 
-void show_admin_menu() {
+void show_admin_menu() {                                                         // <--- Add while loop!
     puts("1. Enter book action menu\n2. Enter student action menu\n");
     int choice;
     int entry_count = 0;
@@ -19,11 +19,11 @@ void show_admin_menu() {
             show_students_menu(true);
             break;
         default:
-            break;
+            break;                                  // <----
     }
 }
 
-void show_books_menu(bool link_to_admin_menu) {
+void show_books_menu(bool link_to_admin_menu) {                                 // <--- Add while loop!
     puts("1. Add a new book\n2. Delete a book\n3. See information about a book\n4. See information about"
          " all books\n5. Edit book info\n6. Change amount of available books\n7. Give a book to the student\n"
          "8. Receive a book from a student\n");
@@ -59,11 +59,11 @@ void show_books_menu(bool link_to_admin_menu) {
         case BOOKS_EXIT:
             break;
         default:
-            break;
+            break;                                      // <---
     }
 }
 
-void show_students_menu(bool link_to_admin_menu) {
+void show_students_menu(bool link_to_admin_menu) {                          // <--- Add while loop
     puts("1. Add a student\n2. Delete a student\n3. Edit information about student\n4. Show information "
          "about student\n5. Search a student by surname\n");
     if (link_to_admin_menu)
@@ -85,13 +85,13 @@ void show_students_menu(bool link_to_admin_menu) {
             break;
         case EDIT_STUDENT_INFO:
             break;
-        case STUDENT_INFO:
+        case STUDENT_INFO_BY_RECORD_BOOK:
             break;
-        case STUDENT_SURNAME_SEARCH:
+        case STUDENT_INFO_BY_SURNAME:
             break;
         case STUDENT_EXIT:
             break;
         default:
-            break;
+            break;                                  // <----
     }
 }

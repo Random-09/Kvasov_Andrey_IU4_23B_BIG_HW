@@ -12,10 +12,6 @@
 #define USERS_DB_FILE_PATH "../users.csv"
 #define STUDENTS_BOOKS_DB_FILE_PATH "../student_books.csv"
 
-// typedef struct AllDatabases {
-//
-// } AllDatabases_t;                                    <----- check if it works
-
 typedef struct Student {
     char *record_book_num;
     char *surname;
