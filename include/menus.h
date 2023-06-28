@@ -32,6 +32,8 @@ enum student_choice {
     STUDENT_SURNAME_SEARCH
 };
 
+void show_admin_menu();
+
 void show_books_menu(bool link_to_admin_menu);
 
 void show_students_menu(bool link_to_admin_menu);
