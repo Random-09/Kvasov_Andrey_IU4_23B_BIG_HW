@@ -45,4 +45,12 @@ typedef struct StudentBook {
     char *return_date;
 } StudentBook_t;
 
+Student_t *init_students_db(int *number_of_students);
+
+Book_t *init_books_db (int *number_of_books);
+
+User_t *init_users_db(int *number_of_users);
+
+StudentBook_t *init_student_book_db(int *number_of_student_books);
+
 #endif

@@ -97,7 +97,7 @@ User_t *init_users_db(int *number_of_users) {
 }
 
 StudentBook_t *init_student_book_db(int *number_of_student_books) {
-    StudentBook_t *student_book_db_ptr = (StudentBook_t *) malloc(sizeof(StudentBook_t));
+    StudentBook_t *stud_book_db_ptr = (StudentBook_t *) malloc(sizeof(StudentBook_t));
     FILE *file_ptr = fopen(STUDENTS_BOOKS_DB_FILE_PATH, "r");
     char line[MAX_LINE_LEN];
     char *ISBN_tok, *record_book_num_tok, *return_date_tok;
@@ -113,10 +113,10 @@ StudentBook_t *init_student_book_db(int *number_of_student_books) {
         long ISBN = atol(ISBN_tok);
 
         (*number_of_student_books)++;
-        realloc(student_book_db_ptr, *number_of_student_books);
+        realloc(stud_book_db_ptr, *number_of_student_books);
         StudentBook_t student_book = {ISBN, record_book_num, return_date};
-        student_book_db_ptr[*number_of_student_books - 1] = student_book;
+        stud_book_db_ptr[*number_of_student_books - 1] = student_book;
     }
     fclose(file_ptr);
-    return student_book_db_ptr;
+    return stud_book_db_ptr;
 }
