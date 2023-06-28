@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <ctype.h>
 #include "../sha-2/sha-256.h"
 
 #define RECORD_BOOK_NUM_SIZE 7
@@ -12,9 +13,6 @@
 #define FACULTY_SIZE 5
 #define SPECIALITY_SIZE 30
 #define PASSWORD_SIZE 15
-#define BUFFER 30
-#define MAX_INT 9
-#define MAX_FLOAT 7
 
 void str_input(char *input, int data_size);
 

@@ -1,5 +1,13 @@
 #include "../include/data_input.h"
 
+int int_check(char *data) {
+    for (int i = 0; i < strlen(data); i++) {
+        if (!isdigit(data[i]))
+            return 0;
+    }
+    return 1;
+}
+
 void str_input(char *input, int data_size) {
     int i = 0;
     do {
