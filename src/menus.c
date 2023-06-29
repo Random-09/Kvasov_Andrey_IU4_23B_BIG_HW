@@ -1,9 +1,8 @@
 #include "../include/menus.h"
-#include "../include/log.h"
 
 void show_admin_menu(Student_t *stud_db_ptr, int *number_of_students,
                      Book_t *book_db_ptr, int *number_of_books,
-                     StudentBook_t *stud_book_db_ptr, int number_of_student_books,
+                     StudentBook_t *stud_book_db_ptr, int *number_of_student_books,
                      char *login) {
     bool running = true;
     while (running) {
@@ -20,15 +19,15 @@ void show_admin_menu(Student_t *stud_db_ptr, int *number_of_students,
         } while (!isdigit(input));
         switch (choice) {
             case SHOW_BOOKS_MENU:
-                show_books_menu(stud_db_ptr, number_of_students,
+                show_books_menu(stud_db_ptr, *number_of_students,
                                 book_db_ptr, number_of_books,
                                 stud_book_db_ptr, number_of_student_books,
                                 login, true);
                 break;
             case SHOW_STUDENTS_MENU:
                 show_students_menu(stud_db_ptr, number_of_students,
-                                   book_db_ptr, number_of_books,
-                                   stud_book_db_ptr, number_of_student_books,
+                                   book_db_ptr, *number_of_books,
+                                   stud_book_db_ptr, *number_of_student_books,
                                    login, true);
                 break;
             case ADMIN_EXIT:
@@ -42,9 +41,9 @@ void show_admin_menu(Student_t *stud_db_ptr, int *number_of_students,
     }
 }
 
-void show_books_menu(Student_t *stud_db_ptr, int *number_of_students,
+void show_books_menu(Student_t *stud_db_ptr, int number_of_students,
                      Book_t *book_db_ptr, int *number_of_books,
-                     StudentBook_t *stud_book_db_ptr, int number_of_student_books,
+                     StudentBook_t *stud_book_db_ptr, int *number_of_student_books,
                      char *login, bool link_to_admin_menu) {
     bool running = true;
     while (running) {
@@ -66,27 +65,40 @@ void show_books_menu(Student_t *stud_db_ptr, int *number_of_students,
         choice = atoi(&input);
         switch (choice) {
             case ADD_A_BOOK:
+                add_book(book_db_ptr, number_of_books);
                 add_log(login, "Add a book");
                 break;
             case DELETE_A_BOOK:
+                delete_book(book_db_ptr, number_of_books,
+                            stud_book_db_ptr, *number_of_student_books);
                 add_log(login, "Delete a book");
                 break;
             case INFO_ABOUT_A_BOOK:
+                book_info(book_db_ptr, *number_of_books,
+                          stud_book_db_ptr, *number_of_student_books,
+                          stud_db_ptr, number_of_students);
                 add_log(login, "Info about a book");
                 break;
             case ALL_BOOK_INFO:
+                all_books_info(book_db_ptr, *number_of_books);
                 add_log(login, "All book info");
                 break;
             case EDIT_BOOK_INFO:
+                edit_book_info(book_db_ptr, *number_of_books, number_of_students);
                 add_log(login, "Edit book info");
                 break;
             case CHANGE_BOOK_AMOUNT:
+                change_total_number_of_books(book_db_ptr, *number_of_books);
                 add_log(login, "Change book amount");
                 break;
             case GIVE_A_BOOK:
+                give_a_book(book_db_ptr, *number_of_books,
+                            stud_book_db_ptr, number_of_student_books);
                 add_log(login, "Give a book");
                 break;
             case RECEIVE_A_BOOK:
+                receive_a_book(book_db_ptr, *number_of_books,
+                               stud_book_db_ptr, number_of_student_books);
                 add_log(login, "Receive a book");
                 break;
             case BOOKS_EXIT:
@@ -101,7 +113,7 @@ void show_books_menu(Student_t *stud_db_ptr, int *number_of_students,
 }
 
 void show_students_menu(Student_t *stud_db_ptr, int *number_of_students,
-                        Book_t *book_db_ptr, int *number_of_books,
+                        Book_t *book_db_ptr, int number_of_books,
                         StudentBook_t *stud_book_db_ptr, int number_of_student_books,
                         char *login, bool link_to_admin_menu) {
     bool running = true;
@@ -123,18 +135,26 @@ void show_students_menu(Student_t *stud_db_ptr, int *number_of_students,
         choice = atoi(&input);
         switch (choice) {
             case ADD_A_STUDENT:
+                add_student(stud_db_ptr, number_of_students);
                 add_log(login, "Add a student");
                 break;
             case DELETE_A_STUDENT:
+                delete_student(stud_db_ptr, number_of_students,
+                               stud_book_db_ptr, number_of_student_books);
                 add_log(login, "Delete a student");
                 break;
             case EDIT_STUDENT_INFO:
+                edit_student_info(stud_db_ptr, *number_of_students);
                 add_log(login, "Edit student info");
                 break;
             case STUDENT_INFO_BY_RECORD_BOOK:
+                show_student_info_by_record_book(stud_db_ptr, *number_of_students,
+                                                 stud_book_db_ptr, number_of_student_books,
+                                                 book_db_ptr, number_of_books);
                 add_log(login, "Student info by record book");
                 break;
             case STUDENT_INFO_BY_SURNAME:
+                show_student_info_by_surname(stud_db_ptr, *number_of_students);
                 add_log(login, "Student info by surname");
                 break;
             case STUDENT_EXIT:

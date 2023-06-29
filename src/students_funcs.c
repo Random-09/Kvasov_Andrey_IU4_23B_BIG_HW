@@ -145,7 +145,8 @@ void show_student_info_by_record_book(Student_t *stud_db_ptr, int number_of_stud
         if (!strcmp(stud_book_db_ptr[i].record_book_num, record_book_num)) {
             for (int j = 0; j < number_of_books; j++) {
                 if (stud_book_db_ptr[i].ISBN == book_db_ptr[j].ISBN)
-                    printf("%s %s", book_db_ptr[j].title, book_db_ptr[j].author);
+                    printf("%s %s %s", book_db_ptr[j].title, book_db_ptr[j].author,
+                           stud_book_db_ptr[i].return_date);
             }
         }
     }

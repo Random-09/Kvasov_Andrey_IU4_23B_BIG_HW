@@ -8,6 +8,7 @@
 #include "book_funcs.h"
 #include "students_funcs.h"
 #include "init_db.h"
+#include "log.h"
 
 enum admin_choice {
     ADMIN_EXIT = 0,
@@ -38,16 +39,16 @@ enum student_choice {
 
 void show_admin_menu(Student_t *stud_db_ptr, int *number_of_students,
                      Book_t *book_db_ptr, int *number_of_books,
-                     StudentBook_t *stud_book_db_ptr, int number_of_student_books,
+                     StudentBook_t *stud_book_db_ptr, int *number_of_student_books,
                      char *login);
 
-void show_books_menu(Student_t *stud_db_ptr, int *number_of_students,
+void show_books_menu(Student_t *stud_db_ptr, int number_of_students,
                      Book_t *book_db_ptr, int *number_of_books,
-                     StudentBook_t *stud_book_db_ptr, int number_of_student_books,
+                     StudentBook_t *stud_book_db_ptr, int *number_of_student_books,
                      char *login, bool link_to_admin_menu);
 
 void show_students_menu(Student_t *stud_db_ptr, int *number_of_students,
-                        Book_t *book_db_ptr, int *number_of_books,
+                        Book_t *book_db_ptr, int number_of_books,
                         StudentBook_t *stud_book_db_ptr, int number_of_student_books,
                         char *login, bool link_to_admin_menu);
 
