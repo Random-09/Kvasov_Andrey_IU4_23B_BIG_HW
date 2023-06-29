@@ -7,16 +7,17 @@ void show_admin_menu(Student_t *stud_db_ptr, int *number_of_students,
     bool running = true;
     while (running) {
         add_log(login, "Entered admin menu");
-        puts("1. Enter book action menu\n2. Enter student action menu\n");
+        puts("1. Enter book action menu\n2. Enter student action menu\n0. Save & Exit");
         char input;
         int choice;
         int entry_count = 0;
         do {
             if (entry_count > 0)
                 puts("Please enter a number as a choice");
-            scanf("%c", &input);
+            scanf("%s", &input);
             entry_count++;
         } while (!isdigit(input));
+        choice = atoll(&input);
         switch (choice) {
             case SHOW_BOOKS_MENU:
                 show_books_menu(stud_db_ptr, *number_of_students,
@@ -50,16 +51,18 @@ void show_books_menu(Student_t *stud_db_ptr, int number_of_students,
         add_log(login, "Entered books menu");
         puts("1. Add a new book\n2. Delete a book\n3. See information about a book\n4. See information about"
              " all books\n5. Edit book info\n6. Change amount of available books\n7. Give a book to the student\n"
-             "8. Receive a book from a student\n");
+             "8. Receive a book from a student");
         if (link_to_admin_menu)
-            puts("0. Exit to admin menu\n");
+            puts("0. Exit to admin menu");
+        else
+            puts("0. Save & exit");
         char input;
         int choice;
         int entry_count = 0;
         do {
             if (entry_count > 0)
                 puts("Please enter a number as a choice");
-            scanf("%c", &input);
+            scanf("%s", &input);
             entry_count++;
         } while (!isdigit(input));
         choice = atoi(&input);
@@ -120,16 +123,18 @@ void show_students_menu(Student_t *stud_db_ptr, int *number_of_students,
     while (running) {
         add_log(login, "Entered students menu");
         puts("1. Add a student\n2. Delete a student\n3. Edit information about student\n4. Show information "
-             "about student\n5. Search a student by surname\n");
+             "about student\n5. Search a student by surname");
         if (link_to_admin_menu)
-            puts("0. Exit to admin menu\n");
+            puts("0. Exit to admin menu");
+        else
+            puts("0. Save & exit");
         char input;
         int choice;
         int entry_count = 0;
         do {
             if (entry_count > 0)
                 puts("Please enter a number as a choice");
-            scanf("%c", &input);
+            scanf("%s", &input);
             entry_count++;
         } while (!isdigit(input));
         choice = atoi(&input);

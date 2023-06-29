@@ -5,12 +5,18 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include "log.h"
+
+#define STUDENTS_DB_CAPACITY 50
+#define BOOKS_DB_CAPACITY 100
+#define USERS_DB_CAPACITY 50
+#define STUDENT_BOOKS_DB_CAPACITY 200
 
 #define MAX_LINE_LEN 128
 #define STUDENTS_DB_FILE_PATH "../db/students.csv"
 #define BOOKS_DB_FILE_PATH "../db/books.csv"
-#define USERS_DB_FILE_PATH "../users.csv"
-#define STUDENTS_BOOKS_DB_FILE_PATH "../student_books.csv"
+#define USERS_DB_FILE_PATH "../db/users.csv"
+#define STUDENTS_BOOKS_DB_FILE_PATH "../db/student_books.csv"
 
 typedef struct Student {
     char *record_book_num;
@@ -21,7 +27,7 @@ typedef struct Student {
 } Student_t;
 
 typedef struct Book {
-    long ISBN;                  // <--- UNIQUE!
+    long long ISBN;
     char *author;
     char *title;
     int total_books;
@@ -36,7 +42,7 @@ typedef struct User {
 } User_t;
 
 typedef struct StudentBook {
-    long ISBN;
+    long long ISBN;
     char *record_book_num;
     char *return_date;
 } StudentBook_t;

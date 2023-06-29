@@ -9,8 +9,8 @@ int int_check(char *data) {
 }
 
 int int_input() {
-    char *input = NULL;
-    int tries_count = 0;                                  // <---- change i to tries_count or smth idk
+    char input[MAX_INT_SIZE];
+    int tries_count = 0;
     do {
         if (tries_count > 0)
             printf("This value is not a number or longer than %d. Try again.\n", MAX_INT_SIZE);
@@ -21,7 +21,7 @@ int int_input() {
 }
 
 long long_input() {
-    char *input = NULL;
+    char input[MAX_LONG_SIZE];
     int tries_count = 0;
     do {
         if (tries_count > 0)

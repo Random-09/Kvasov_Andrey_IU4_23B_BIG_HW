@@ -9,6 +9,11 @@ int book_index_by_isbn(Book_t *book_db_ptr, int number_of_books, long ISBN) {
 }
 
 void add_book(Book_t *book_db_ptr, int *number_of_books) {
+    if (*number_of_books == BOOKS_DB_CAPACITY) {
+        puts("Books db capacity reached");
+        return;
+    }
+
     puts("Enter ISBN of a book");
     long ISBN = long_input();
 
@@ -31,15 +36,19 @@ void add_book(Book_t *book_db_ptr, int *number_of_books) {
     puts("Enter number of available books");
     int available_books = int_input();
 
-    (*number_of_books)++;
-    realloc(book_db_ptr, *number_of_books);
     Book_t book = {ISBN, author, title, total_books, available_books};
-    book_db_ptr[*number_of_books - 1] = book;
+    book_db_ptr[*number_of_books] = book;
+    (*number_of_books)++;
     puts("Book added successfully!");
 }
 
 void delete_book(Book_t *book_db_ptr, int *number_of_books,
                  StudentBook_t *stud_book_db_ptr, int number_of_student_books) {
+    if (*number_of_books == 0) {
+        puts("Database is empty, can't delete any book");
+        return;
+    }
+
     puts("Enter ISBN of a book you want to delete");
     long ISBN = long_input();
 
@@ -93,7 +102,7 @@ void all_books_info(Book_t *book_db_ptr, int number_of_books) {
 }
 
 void print_book_info(Book_t *book) {
-    printf("ISBN: %ld\nAuthor: %s\nTitle %s\nTotal number of books: %d\nTotal number of available books: %d",
+    printf("ISBN: %lld\nAuthor: %s\nTitle: %s\nTotal number of books: %d\nTotal number of available books: %d\n",
            book->ISBN, book->author, book->title, book->total_books, book->available_books);
 }
 
@@ -107,14 +116,14 @@ void edit_book_info(Book_t *book_db_ptr, int number_of_books, int number_of_stud
     }
     bool running = true;
     while (running) {
-        puts("Which book data do you want to change?\n1. Author\n2. Title\n3. Total available books\n");
+        puts("Which book data do you want to change?\n1. Author\n2. Title\n3. Total available books");
         char input;
         int choice;
         int entry_count = 0;
         do {
             if (entry_count > 0)
                 puts("Please enter a specified number as a choice");
-            scanf("%c", &input);
+            scanf("%s", &input);
             entry_count++;
         } while (!isdigit(input));
         switch (choice) {

@@ -9,6 +9,11 @@ int student_index_by_record_book(Student_t *stud_db_ptr, int number_of_students,
 }
 
 void add_student(Student_t *stud_db_ptr, int *number_of_students) {
+    if (*number_of_students == STUDENTS_DB_CAPACITY) {
+        puts("Students db capacity reached");
+        return;
+    }
+
     char *record_book_num = (char *) malloc(RECORD_BOOK_NUM_SIZE * sizeof(char));
     puts("Enter student's record book number");
     str_input(record_book_num, RECORD_BOOK_NUM_SIZE);
@@ -43,7 +48,12 @@ void add_student(Student_t *stud_db_ptr, int *number_of_students) {
 
 void delete_student(Student_t *stud_db_ptr, int *number_of_students,
                     StudentBook_t *stud_book_db_ptr, int number_of_student_books) {
-    char *record_book_num = NULL;
+    if (*number_of_students == 0) {
+        puts("Database is empty, can't delete any student");
+        return;
+    }
+
+    char record_book_num[RECORD_BOOK_NUM_SIZE];
     puts("Enter record book number of a student you want to delete");
     str_input(record_book_num, RECORD_BOOK_NUM_SIZE);
 
@@ -72,7 +82,7 @@ void delete_student(Student_t *stud_db_ptr, int *number_of_students,
 }
 
 void edit_student_info(Student_t *stud_db_ptr, int number_of_students) {
-    char *record_book_num = NULL;
+    char record_book_num[RECORD_BOOK_NUM_SIZE];
     puts("Enter record book number of a student you want to edit");
     str_input(record_book_num, RECORD_BOOK_NUM_SIZE);
     int index = student_index_by_record_book(stud_db_ptr, number_of_students, record_book_num);
@@ -82,38 +92,38 @@ void edit_student_info(Student_t *stud_db_ptr, int number_of_students) {
     }
     bool running = true;
     while (running) {
-        puts("Which student data do you want to change?\n1. Surname\n2. Name\n3. Faculty\n4. Speciality\n");
+        puts("Which student data do you want to change?\n1. Surname\n2. Name\n3. Faculty\n4. Speciality");
         char input;
         int choice;
         int entry_count = 0;
         do {
             if (entry_count > 0)
                 puts("Please enter a specified number as a choice");
-            scanf("%c", &input);
+            scanf("%s", &input);
             entry_count++;
         } while (!isdigit(input));
         switch (choice) {
             case SURNAME:
                 puts("Enter a new surname");
-                char *surname = NULL;
+                char surname[SURNAME_SIZE];
                 str_input(surname, SURNAME_SIZE);
                 strcpy(stud_db_ptr[index].surname, surname);
                 break;
             case NAME:
                 puts("Enter a new name");
-                char *name = NULL;
+                char name[NAME_SIZE];
                 str_input(name, NAME_SIZE);
                 strcpy(stud_db_ptr[index].name, name);
                 break;
             case FACULTY:
                 puts("Enter a new faculty");
-                char *faculty = NULL;
+                char faculty[FACULTY_SIZE];
                 str_input(faculty, FACULTY_SIZE);
                 strcpy(stud_db_ptr[index].faculty, faculty);
                 break;
             case SPECIALITY:
                 puts("Enter a new speciality");
-                char *speciality = NULL;
+                char speciality[SPECIALITY_SIZE];
                 str_input(speciality, SPECIALITY_SIZE);
                 strcpy(stud_db_ptr[index].speciality, speciality);
                 break;
@@ -131,7 +141,7 @@ void show_student_info_by_record_book(Student_t *stud_db_ptr, int number_of_stud
                                       StudentBook_t *stud_book_db_ptr, int number_of_student_books,
                                       Book_t *book_db_ptr, int number_of_books) {
     puts("Enter a record book number of a student you want to see");
-    char *record_book_num = NULL;
+    char record_book_num[RECORD_BOOK_NUM_SIZE];
     str_input(record_book_num, RECORD_BOOK_NUM_SIZE);
     int index = student_index_by_record_book(stud_db_ptr, number_of_students, record_book_num);
     if (index == -1) {
@@ -155,7 +165,7 @@ void show_student_info_by_record_book(Student_t *stud_db_ptr, int number_of_stud
 void show_student_info_by_surname(Student_t *stud_db_ptr, int number_of_students) {
     bool students_found = false;
     puts("Enter a surname of student/students you want to find");
-    char *surname = NULL;
+    char surname[SURNAME_SIZE];
     str_input(surname, SURNAME_SIZE);
     for (int i = 0; i < number_of_students; i++) {
         if (!strcmp(surname, stud_db_ptr[i].surname)) {
