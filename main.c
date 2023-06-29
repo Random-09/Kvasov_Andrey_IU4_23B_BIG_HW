@@ -24,11 +24,20 @@ int main() {
     add_log(login, "Authentication successful");
 
     if (user_db_ptr[index].full_books_access && user_db_ptr[index].full_student_access)
-        show_admin_menu(login);
+        show_admin_menu(stud_db_ptr, &number_of_students,
+                        book_db_ptr, &number_of_books,
+                        stud_book_db_ptr, &number_of_student_books,
+                        login);
     if (user_db_ptr[index].full_books_access && !user_db_ptr[index].full_student_access)
-        show_books_menu(login, false);
+        show_books_menu(stud_db_ptr, number_of_students,
+                        book_db_ptr, &number_of_books,
+                        stud_book_db_ptr, &number_of_student_books,
+                        login, false);
     if (!user_db_ptr[index].full_books_access && user_db_ptr[index].full_student_access)
-        show_students_menu(login, false);
+        show_students_menu(stud_db_ptr, &number_of_students,
+                           book_db_ptr, number_of_books,
+                           stud_book_db_ptr, number_of_student_books,
+                           login, false);
 
     save_books(book_db_ptr, number_of_books);
     save_students(stud_db_ptr, number_of_students);
