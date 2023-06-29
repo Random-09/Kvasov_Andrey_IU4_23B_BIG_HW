@@ -5,9 +5,13 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <stdbool.h>
+#include "book_funcs.h"
+#include "students_funcs.h"
+#include "init_db.h"
 
 enum admin_choice {
-    SHOW_BOOKS_MENU = 1,
+    ADMIN_EXIT = 0,
+    SHOW_BOOKS_MENU,
     SHOW_STUDENTS_MENU
 };
 
@@ -32,10 +36,19 @@ enum student_choice {
     STUDENT_INFO_BY_SURNAME
 };
 
-void show_admin_menu(char *login);
+void show_admin_menu(Student_t *stud_db_ptr, int *number_of_students,
+                     Book_t *book_db_ptr, int *number_of_books,
+                     StudentBook_t *stud_book_db_ptr, int number_of_student_books,
+                     char *login);
 
-void show_books_menu(char *login, bool link_to_admin_menu);
+void show_books_menu(Student_t *stud_db_ptr, int *number_of_students,
+                     Book_t *book_db_ptr, int *number_of_books,
+                     StudentBook_t *stud_book_db_ptr, int number_of_student_books,
+                     char *login, bool link_to_admin_menu);
 
-void show_students_menu(char *login, bool link_to_admin_menu);
+void show_students_menu(Student_t *stud_db_ptr, int *number_of_students,
+                        Book_t *book_db_ptr, int *number_of_books,
+                        StudentBook_t *stud_book_db_ptr, int number_of_student_books,
+                        char *login, bool link_to_admin_menu);
 
 #endif

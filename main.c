@@ -21,7 +21,7 @@ int main() {
         index = authentication(user_db_ptr, number_of_users);
     } while (index == -1);
     char *login = user_db_ptr[index].login;
-    add_log(login, "Authentication successfull");
+    add_log(login, "Authentication successful");
 
     if (user_db_ptr[index].full_books_access && user_db_ptr[index].full_student_access)
         show_admin_menu(login);
@@ -29,7 +29,6 @@ int main() {
         show_books_menu(login, false);
     if (!user_db_ptr[index].full_books_access && user_db_ptr[index].full_student_access)
         show_students_menu(login, false);
-
 
     save_books(book_db_ptr, number_of_books);
     save_students(stud_db_ptr, number_of_students);
