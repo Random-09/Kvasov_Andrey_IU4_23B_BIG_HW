@@ -20,11 +20,14 @@ int student_index_by_record_book(Student_t *stud_db_ptr, int number_of_students,
 
 void add_student(Student_t *stud_db_ptr, int *number_of_students);
 
-void delete_student(Student_t *stud_db_ptr, int *number_of_students);
+void delete_student(Student_t *stud_db_ptr, int *number_of_students,
+                    StudentBook_t *stud_book_db_ptr, int number_of_student_books);
 
 void edit_student_info(Student_t *stud_db_ptr, int number_of_students);
 
-void show_student_info_by_record_book(Student_t *stud_db_ptr, int number_of_students);
+void show_student_info_by_record_book(Student_t *stud_db_ptr, int number_of_students,
+                                      StudentBook_t *stud_book_db_ptr, int number_of_student_books,
+                                      Book_t *book_db_ptr, int number_of_books);
 
 void show_student_info_by_surname(Student_t *stud_db_ptr, int number_of_students);
 

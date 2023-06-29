@@ -41,20 +41,25 @@ void add_student(Student_t *stud_db_ptr, int *number_of_students) {
     puts("Student added successfully!");
 }
 
-void delete_student(Student_t *stud_db_ptr, int *number_of_students) {
-    char *record_book_num = NULL;                                       // <---- !
+void delete_student(Student_t *stud_db_ptr, int *number_of_students,
+                    StudentBook_t *stud_book_db_ptr, int number_of_student_books) {
+    char *record_book_num = NULL;
     puts("Enter record book number of a student you want to delete");
     str_input(record_book_num, RECORD_BOOK_NUM_SIZE);
-    // ПРОВЕРКА НА ТО, ЧТО У СТУДЕНТА НЕТУ КНИГ
-    // ПРОВЕРКА НА ТО, ЧТО У СТУДЕНТА НЕТУ КНИГ                         <<------
-    // ПРОВЕРКА НА ТО, ЧТО У СТУДЕНТА НЕТУ КНИГ                         <<------
-    // ПРОВЕРКА НА ТО, ЧТО У СТУДЕНТА НЕТУ КНИГ                         <<------
-    // ПРОВЕРКА НА ТО, ЧТО У СТУДЕНТА НЕТУ КНИГ
+
     int index = student_index_by_record_book(stud_db_ptr, *number_of_students, record_book_num);
     if (index == -1) {
         puts("This student is not in the database");
         return;
     }
+
+    for (int i = 0; i < number_of_student_books; i++) {
+        if (!strcmp(stud_book_db_ptr[i].record_book_num, record_book_num)) {
+            puts("Cant delete this student, because he has books");
+            return;
+        }
+    }
+
     for (int i = index; i < *number_of_students - 1; i++) {
         stud_db_ptr[i] = stud_db_ptr[i + 1];
     }
@@ -67,7 +72,7 @@ void delete_student(Student_t *stud_db_ptr, int *number_of_students) {
 }
 
 void edit_student_info(Student_t *stud_db_ptr, int number_of_students) {
-    char *record_book_num = NULL;                                       // <---- !
+    char *record_book_num = NULL;
     puts("Enter record book number of a student you want to edit");
     str_input(record_book_num, RECORD_BOOK_NUM_SIZE);
     int index = student_index_by_record_book(stud_db_ptr, number_of_students, record_book_num);
@@ -122,7 +127,9 @@ void edit_student_info(Student_t *stud_db_ptr, int number_of_students) {
     }
 }
 
-void show_student_info_by_record_book(Student_t *stud_db_ptr, int number_of_students) {
+void show_student_info_by_record_book(Student_t *stud_db_ptr, int number_of_students,
+                                      StudentBook_t *stud_book_db_ptr, int number_of_student_books,
+                                      Book_t *book_db_ptr, int number_of_books) {
     puts("Enter a record book number of a student you want to see");
     char *record_book_num = NULL;
     str_input(record_book_num, RECORD_BOOK_NUM_SIZE);
@@ -133,9 +140,15 @@ void show_student_info_by_record_book(Student_t *stud_db_ptr, int number_of_stud
     }
     print_student_info(&stud_db_ptr[index]);
 
-    // ДОДЕЛАТЬ ВЫВОД ПРО КНИГИ СТУДЕНТА                                <<-----
-    // ДОДЕЛАТЬ ВЫВОД ПРО КНИГИ СТУДЕНТА                                <<-----
-    // ДОДЕЛАТЬ ВЫВОД ПРО КНИГИ СТУДЕНТА                                <<-----
+    puts("Books of this student:");
+    for (int i = 0; i < number_of_student_books; i++) {
+        if (!strcmp(stud_book_db_ptr[i].record_book_num, record_book_num)) {
+            for (int j = 0; j < number_of_books; j++) {
+                if (stud_book_db_ptr[i].ISBN == book_db_ptr[j].ISBN)
+                    printf("%s %s", book_db_ptr[j].title, book_db_ptr[j].author);
+            }
+        }
+    }
 }
 
 void show_student_info_by_surname(Student_t *stud_db_ptr, int number_of_students) {
