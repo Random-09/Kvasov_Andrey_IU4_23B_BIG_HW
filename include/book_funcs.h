@@ -17,7 +17,7 @@ enum book_choice {
     TOTAL_BOOK_NUM
 };
 
-int book_index_by_isbn(Book_t *book_db_ptr, int number_of_books, long ISBN);
+int book_index_by_isbn(Book_t *book_db_ptr, int number_of_books, long long ISBN);
 
 void add_book(Book_t *book_db_ptr, int *number_of_books);
 

@@ -1,6 +1,6 @@
 #include "../include/book_funcs.h"
 
-int book_index_by_isbn(Book_t *book_db_ptr, int number_of_books, long ISBN) {
+int book_index_by_isbn(Book_t *book_db_ptr, int number_of_books, long long ISBN) {
     for (int i = 0; i < number_of_books; i++) {
         if (book_db_ptr[i].ISBN == ISBN)
             return i;
@@ -18,7 +18,7 @@ void add_book(Book_t *book_db_ptr, int *number_of_books) {
     long ISBN = long_input();
 
     if (book_index_by_isbn(book_db_ptr, *number_of_books, ISBN) != -1) {
-        puts("Student with this record book number is already in the database");
+        puts("This book is already in the database");
         return;
     }
 
@@ -154,7 +154,7 @@ void edit_book_info(Book_t *book_db_ptr, int number_of_books, int number_of_stud
 
 void change_total_number_of_books(Book_t *book_db_ptr, int number_of_books) {
     puts("Enter ISBN of a book you want to change number of");
-    long ISBN = long_input();
+    long long ISBN = long_input();
     int index = book_index_by_isbn(book_db_ptr, number_of_books, ISBN);
     if (index == -1) {
         puts("This book is not in the database");
@@ -162,6 +162,7 @@ void change_total_number_of_books(Book_t *book_db_ptr, int number_of_books) {
     }
     int total_books;
     int tries_count = 0;
+    puts("Enter new number of books");
     do {
         if (tries_count > 0)
             puts("Total number of books cant be a negative number!");
@@ -170,7 +171,7 @@ void change_total_number_of_books(Book_t *book_db_ptr, int number_of_books) {
     } while (total_books < 0);
     int delta = book_db_ptr[index].total_books - total_books;
     book_db_ptr[index].total_books = total_books;
-    if (book_db_ptr[index].available_books + delta < 0)
+    if (book_db_ptr[index].available_books - delta <= 0)
         book_db_ptr[index].available_books = 0;
     else
         book_db_ptr[index].available_books += delta;
@@ -179,7 +180,7 @@ void change_total_number_of_books(Book_t *book_db_ptr, int number_of_books) {
 void give_a_book(Book_t *book_db_ptr, int number_of_books,
                  StudentBook_t *stud_book_db_ptr, int *number_of_student_books) {
     puts("Enter ISBN of a book you want to give");
-    long ISBN = long_input();
+    long long ISBN = long_input();
     int index = book_index_by_isbn(book_db_ptr, number_of_books, ISBN);
     if (index == -1) {
         puts("This book is not in the database");
@@ -191,19 +192,18 @@ void give_a_book(Book_t *book_db_ptr, int number_of_books,
         return;
     }
 
-    char *record_book_num = NULL;
+    char *record_book_num = malloc(sizeof(char) * RECORD_BOOK_NUM_SIZE);
     puts("Enter student's record book number");
     str_input(record_book_num, RECORD_BOOK_NUM_SIZE);
 
-    char *return_date = NULL;
+    char *return_date = malloc(sizeof(char) * RETURN_DATE_SIZE);
     puts("Enter return date of a book");
     str_input(return_date, RETURN_DATE_SIZE);
 
-    book_db_ptr[index].available_books--;
-    (*number_of_student_books)++;
-    realloc(stud_book_db_ptr, *number_of_student_books);
     StudentBook_t book = {ISBN, record_book_num, return_date};
-    stud_book_db_ptr[*number_of_student_books - 1] = book;
+    stud_book_db_ptr[*number_of_student_books] = book;
+    (*number_of_student_books)++;
+    book_db_ptr[index].available_books--;
     puts("Book given successfully");
 }
 
@@ -217,7 +217,7 @@ void receive_a_book(Book_t *book_db_ptr, int number_of_books,
         return;
     }
 
-    char *record_book_num = NULL;
+    char record_book_num[RECORD_BOOK_NUM_SIZE];
     puts("Enter student's record book number");
     str_input(record_book_num, RECORD_BOOK_NUM_SIZE);
 

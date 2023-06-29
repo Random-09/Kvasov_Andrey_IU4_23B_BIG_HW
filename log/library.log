@@ -1,79 +1,140 @@
-(null),admin,Authentication successful(null),admin,Entered admin menu(null),admin,Authentication successful
-(null),admin,Entered admin menu
-(null),admin,Authentication successful
-(null),admin,Entered admin menu
-(null),admin,Entered admin menu
-(null),admin,Authentication successful
-(null),admin,Entered admin menu
-(null),admin,Entered books menu
-(null),admin,Authentication successful
-(null),admin,Entered admin menu
-(null),admin,Entered books menu
-(null),admin,Authentication successful
-(null),admin,Entered admin menu
-(null),admin,Entered books menu
-(null),admin,Add a book
-(null),admin,Entered books menu
-(null),admin,All book info
-(null),admin,Entered books menu
-(null),admin,Authentication successful
-(null),admin,Entered admin menu
-(null),admin,Entered books menu
-(null),admin,All book info
-(null),admin,Entered books menu
-(null),admin,Authentication successful
-(null),admin,Entered admin menu
-(null),admin,Entered books menu
-(null),admin,All book info
-(null),admin,Entered books menu
-(null),admin,Authentication successful
-(null),admin,Entered admin menu
-(null),admin,Entered books menu
-(null),admin,All book info
-(null),admin,Entered books menu
-(null),admin,Add a book
-(null),admin,Entered books menu
-(null),admin,Exited books menu
-(null),admin,Entered admin menu
-(null),admin,Authentication successful
-(null),admin,Entered admin menu
-(null),admin,Entered books menu
-(null),admin,Add a book
-(null),admin,Entered books menu
-(null),admin,Exited books menu
-(null),admin,Entered admin menu
-(null),admin,Exited admin menu
-(null),admin,Save and free db successfully
-(null),admin,Authentication successful
-(null),admin,Entered admin menu
-(null),admin,Entered books menu
-(null),admin,Delete a book
-(null),admin,Entered books menu
-(null),admin,All book info
-(null),admin,Entered books menu
-(null),admin,Exited books menu
-(null),admin,Entered admin menu
-(null),admin,Exited admin menu
-(null),Ð(°ö,Save and free db successfully
-(null),admin,Authentication successful
-(null),admin,Entered admin menu
-(null),admin,Exited admin menu
-(null),admin,Save and free db successfully
-,admin,Authentication successful
-,admin,Entered admin menu
-,admin,Exited admin menu
-,admin,Save and free db successfully
-,admin,Authentication successful
-,admin,Entered admin menu
-,admin,Exited admin menu
-,admin,Save and free db successfully
-29.06.2023 22:01:09,admin,Authentication successful
-29.06.2023 22:01:09,admin,Entered admin menu
-29.06.2023 22:02:11,admin,Authentication successful
-29.06.2023 22:02:11,admin,Entered admin menu
-29.06.2023 22:02:13,admin,Exited admin menu
-29.06.2023 22:02:13,admin,Save and free db successfully
-29.06.2023 22:03:28,admin,Authentication successful
-29.06.2023 22:03:28,admin,Entered admin menu
-29.06.2023 22:03:29,admin,Exited admin menu
-29.06.2023 22:03:29,admin,Save and free db successfully
+29.06.2023 22:14:16,admin,Authentication successful
+29.06.2023 22:14:16,admin,Entered admin menu
+29.06.2023 22:14:17,admin,Entered books menu
+29.06.2023 22:14:29,admin,Add a book
+29.06.2023 22:14:29,admin,Entered books menu
+29.06.2023 22:16:17,admin,Authentication successful
+29.06.2023 22:16:17,admin,Entered admin menu
+29.06.2023 22:16:19,admin,Entered books menu
+29.06.2023 22:16:29,admin,Add a book
+29.06.2023 22:16:29,admin,Entered books menu
+29.06.2023 22:16:48,admin,Give a book
+29.06.2023 22:16:48,admin,Entered books menu
+29.06.2023 22:16:57,admin,Info about a book
+29.06.2023 22:16:57,admin,Entered books menu
+29.06.2023 22:18:04,admin,Authentication successful
+29.06.2023 22:18:04,admin,Entered admin menu
+29.06.2023 22:18:05,admin,Entered books menu
+29.06.2023 22:18:17,admin,Add a book
+29.06.2023 22:18:17,admin,Entered books menu
+29.06.2023 22:19:03,admin,Change book amount
+29.06.2023 22:19:03,admin,Entered books menu
+29.06.2023 22:19:08,admin,Info about a book
+29.06.2023 22:19:08,admin,Entered books menu
+29.06.2023 22:19:45,admin,Authentication successful
+29.06.2023 22:19:45,admin,Entered admin menu
+29.06.2023 22:19:46,admin,Entered books menu
+29.06.2023 22:19:57,admin,Add a book
+29.06.2023 22:19:57,admin,Entered books menu
+29.06.2023 22:20:12,admin,Change book amount
+29.06.2023 22:20:12,admin,Entered books menu
+29.06.2023 22:20:17,admin,Info about a book
+29.06.2023 22:20:17,admin,Entered books menu
+29.06.2023 22:21:01,admin,Authentication successful
+29.06.2023 22:21:01,admin,Entered admin menu
+29.06.2023 22:21:02,admin,Entered books menu
+29.06.2023 22:21:07,admin,Info about a book
+29.06.2023 22:21:07,admin,Entered books menu
+29.06.2023 22:21:20,admin,Add a book
+29.06.2023 22:21:20,admin,Entered books menu
+29.06.2023 22:21:27,admin,Change book amount
+29.06.2023 22:21:27,admin,Entered books menu
+29.06.2023 22:21:31,admin,Info about a book
+29.06.2023 22:21:31,admin,Entered books menu
+29.06.2023 22:22:32,admin,Give a book
+29.06.2023 22:22:32,admin,Entered books menu
+29.06.2023 22:22:39,admin,Exited books menu
+29.06.2023 22:22:39,admin,Entered admin menu
+29.06.2023 22:22:40,admin,Exited admin menu
+29.06.2023 22:23:28,admin,Authentication successful
+29.06.2023 22:23:28,admin,Entered admin menu
+29.06.2023 22:23:29,admin,Entered books menu
+29.06.2023 22:23:34,admin,Add a book
+29.06.2023 22:23:34,admin,Entered books menu
+29.06.2023 22:24:10,admin,Authentication successful
+29.06.2023 22:24:10,admin,Entered admin menu
+29.06.2023 22:24:13,admin,Entered books menu
+29.06.2023 22:24:24,admin,Add a book
+29.06.2023 22:24:24,admin,Entered books menu
+29.06.2023 22:24:41,admin,Give a book
+29.06.2023 22:24:41,admin,Entered books menu
+29.06.2023 22:24:44,admin,Exited books menu
+29.06.2023 22:24:44,admin,Entered admin menu
+29.06.2023 22:24:45,admin,Exited admin menu
+29.06.2023 22:26:31,admin,Authentication successful
+29.06.2023 22:26:31,admin,Entered admin menu
+29.06.2023 22:26:32,admin,Entered books menu
+29.06.2023 22:26:48,admin,Add a book
+29.06.2023 22:26:48,admin,Entered books menu
+29.06.2023 22:26:59,admin,Give a book
+29.06.2023 22:26:59,admin,Entered books menu
+29.06.2023 22:27:02,admin,Exited books menu
+29.06.2023 22:27:02,admin,Entered admin menu
+29.06.2023 22:27:03,admin,Exited admin menu
+29.06.2023 22:31:04,admin,Authentication successful
+29.06.2023 22:31:04,admin,Entered admin menu
+29.06.2023 22:31:05,admin,Entered books menu
+29.06.2023 22:31:08,admin,Add a book
+29.06.2023 22:31:08,admin,Entered books menu
+29.06.2023 22:32:12,admin,Authentication successful
+29.06.2023 22:32:12,admin,Entered admin menu
+29.06.2023 22:32:13,admin,Entered books menu
+29.06.2023 22:32:17,admin,Add a book
+29.06.2023 22:32:17,admin,Entered books menu
+29.06.2023 22:32:28,admin,Add a book
+29.06.2023 22:32:28,admin,Entered books menu
+29.06.2023 22:32:49,admin,Give a book
+29.06.2023 22:32:49,admin,Entered books menu
+29.06.2023 22:32:51,admin,Exited books menu
+29.06.2023 22:32:51,admin,Entered admin menu
+29.06.2023 22:32:52,admin,Exited admin menu
+29.06.2023 22:49:42,admin,Authentication successful
+29.06.2023 22:49:42,admin,Entered admin menu
+29.06.2023 22:49:43,admin,Entered books menu
+29.06.2023 22:49:52,admin,Add a book
+29.06.2023 22:49:52,admin,Entered books menu
+29.06.2023 22:50:06,admin,Give a book
+29.06.2023 22:50:06,admin,Entered books menu
+29.06.2023 22:50:08,admin,Exited books menu
+29.06.2023 22:50:08,admin,Entered admin menu
+29.06.2023 22:50:09,admin,Exited admin menu
+29.06.2023 22:52:57,admin,Authentication successful
+29.06.2023 22:52:57,admin,Entered admin menu
+29.06.2023 22:52:58,admin,Entered books menu
+29.06.2023 22:53:02,admin,All book info
+29.06.2023 22:53:02,admin,Entered books menu
+29.06.2023 22:53:27,admin,Authentication successful
+29.06.2023 22:53:27,admin,Entered admin menu
+29.06.2023 22:53:29,admin,Entered books menu
+29.06.2023 22:53:33,admin,Info about a book
+29.06.2023 22:53:33,admin,Entered books menu
+29.06.2023 22:54:09,admin,Authentication successful
+29.06.2023 22:54:09,admin,Entered admin menu
+29.06.2023 22:54:11,admin,Entered books menu
+29.06.2023 22:54:14,admin,Info about a book
+29.06.2023 22:54:14,admin,Entered books menu
+29.06.2023 22:54:36,admin,Exited books menu
+29.06.2023 22:54:36,admin,Entered admin menu
+29.06.2023 22:54:37,admin,Exited admin menu
+29.06.2023 22:54:37,admin,Save and free db successfully
+29.06.2023 22:57:16,admin,Authentication successful
+29.06.2023 22:57:16,admin,Entered admin menu
+29.06.2023 22:57:17,admin,Entered books menu
+29.06.2023 22:57:26,admin,Add a book
+29.06.2023 22:57:26,admin,Entered books menu
+29.06.2023 22:57:43,admin,Give a book
+29.06.2023 22:57:43,admin,Entered books menu
+29.06.2023 22:57:46,admin,Exited books menu
+29.06.2023 22:57:46,admin,Entered admin menu
+29.06.2023 22:57:47,admin,Exited admin menu
+29.06.2023 23:11:52,admin,Authentication successful
+29.06.2023 23:11:52,admin,Entered admin menu
+29.06.2023 23:11:53,admin,Entered books menu
+29.06.2023 23:12:07,admin,Add a book
+29.06.2023 23:12:07,admin,Entered books menu
+29.06.2023 23:12:21,admin,Give a book
+29.06.2023 23:12:21,admin,Entered books menu
+29.06.2023 23:12:24,admin,Exited books menu
+29.06.2023 23:12:24,admin,Entered admin menu
+29.06.2023 23:12:25,admin,Exited admin menu
+29.06.2023 23:12:25,admin,Save and free db successfully

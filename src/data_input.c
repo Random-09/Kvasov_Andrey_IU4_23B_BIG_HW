@@ -29,7 +29,7 @@ long long_input() {
         scanf("%s", input);
         tries_count++;
     } while (!int_check(input) || strlen(input) > MAX_LONG_SIZE);
-    return atol(input);
+    return atoll(input);
 }
 
 void str_input(char *input, int data_size) {

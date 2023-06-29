@@ -23,6 +23,8 @@ void save_students(Student_t *stud_db_ptr, int number_of_students) {
 void save_student_books(StudentBook_t *stud_book_db_ptr, int number_of_student_books) {
     FILE *file_ptr = fopen(STUDENTS_BOOKS_DB_FILE_PATH, "w");
     for (int i = 0; i < number_of_student_books; i++) {
+        printf("%lld,%s,%s", stud_book_db_ptr[i].ISBN, stud_book_db_ptr[i].record_book_num,
+                stud_book_db_ptr[i].return_date);
         fprintf(file_ptr, "%lld,%s,%s", stud_book_db_ptr[i].ISBN, stud_book_db_ptr[i].record_book_num,
                 stud_book_db_ptr[i].return_date);
     }
