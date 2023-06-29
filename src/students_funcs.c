@@ -10,30 +10,30 @@ int student_index_by_record_book(Student_t *stud_db_ptr, int number_of_students,
 
 void add_student(Student_t *stud_db_ptr, int *number_of_students) {
     char *record_book_num = (char *) malloc(RECORD_BOOK_NUM_SIZE * sizeof(char));
-    char *surname = (char *) malloc(SURNAME_SIZE * sizeof(char ));
-    char *name = (char *) malloc(NAME_SIZE * sizeof(char ));
-    char *faculty = (char *) malloc(FACULTY_SIZE * sizeof(char ));
-    char *speciality = (char *) malloc(SPECIALITY_SIZE * sizeof(char ));
-
     puts("Enter student's record book number");
     str_input(record_book_num, RECORD_BOOK_NUM_SIZE);
-
-    puts("Enter student's surname");
-    str_input(surname, SURNAME_SIZE);
-
-    puts("Enter student's name");
-    str_input(name, NAME_SIZE);
-
-    puts("Enter student's faculty");
-    str_input(faculty, FACULTY_SIZE);
-
-    puts("Enter student's speciality");
-    str_input(speciality, SPECIALITY_SIZE);
 
     if (student_index_by_record_book(stud_db_ptr, *number_of_students, record_book_num) != -1) {
         puts("Student with this record book number is already in the database");
         return;
     }
+
+    char *surname = (char *) malloc(SURNAME_SIZE * sizeof(char ));
+    puts("Enter student's surname");
+    str_input(surname, SURNAME_SIZE);
+
+    char *name = (char *) malloc(NAME_SIZE * sizeof(char ));
+    puts("Enter student's name");
+    str_input(name, NAME_SIZE);
+
+    char *faculty = (char *) malloc(FACULTY_SIZE * sizeof(char ));
+    puts("Enter student's faculty");
+    str_input(faculty, FACULTY_SIZE);
+
+    char *speciality = (char *) malloc(SPECIALITY_SIZE * sizeof(char ));
+    puts("Enter student's speciality");
+    str_input(speciality, SPECIALITY_SIZE);
+
     (*number_of_students)++;
     realloc(stud_db_ptr, *number_of_students);
     Student_t student = {record_book_num, surname, name, faculty, speciality};

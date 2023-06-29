@@ -8,6 +8,30 @@ int int_check(char *data) {
     return 1;
 }
 
+int int_input() {
+    char *input = NULL;
+    int i = 0;                                  // <---- change i to tries_count or smth idk
+    do {
+        if (i > 0)
+            printf("This value is not a number or longer than %d. Try again.\n", MAX_INT_SIZE);
+        scanf("%s", input);
+        i++;
+    } while (!int_check(input) || strlen(input) > MAX_INT_SIZE);
+    return atoi(input);
+}
+
+long long_input() {
+    char *input = NULL;
+    int i = 0;
+    do {
+        if (i > 0)
+            printf("This value is not a number or longer than %d. Try again.\n", MAX_LONG_SIZE);
+        scanf("%s", input);
+        i++;
+    } while (!int_check(input) || strlen(input) > MAX_LONG_SIZE);
+    return atol(input);
+}
+
 void str_input(char *input, int data_size) {
     int i = 0;
     do {
