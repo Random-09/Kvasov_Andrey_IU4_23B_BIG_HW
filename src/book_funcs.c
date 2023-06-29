@@ -38,13 +38,18 @@ void add_book(Book_t *book_db_ptr, int *number_of_books) {
     puts("Book added successfully!");
 }
 
-void delete_book(Book_t *book_db_ptr, int *number_of_books) {
+void delete_book(Book_t *book_db_ptr, int *number_of_books,
+                 StudentBook_t *stud_book_db_ptr, int number_of_student_books) {
     puts("Enter ISBN of a book you want to delete");
     long ISBN = long_input();
-    // ПРОВЕРКА НА ТО, ЧТО ЭТОЙ КНИГИ НЕТУ У СТУДЕНТОВ                  <<-----
-    // ПРОВЕРКА НА ТО, ЧТО ЭТОЙ КНИГИ НЕТУ У СТУДЕНТОВ                  <<-----
-    // ПРОВЕРКА НА ТО, ЧТО ЭТОЙ КНИГИ НЕТУ У СТУДЕНТОВ                  <<-----
-    // ПРОВЕРКА НА ТО, ЧТО ЭТОЙ КНИГИ НЕТУ У СТУДЕНТОВ                  <<-----
+
+    for (int i = 0; i < number_of_student_books; i++) {
+        if (stud_book_db_ptr[i].ISBN == ISBN) {
+            puts("Can't delete this book, because not all students have returned it");
+            return;
+        }
+    }
+
     int index = book_index_by_isbn(book_db_ptr, *number_of_books, ISBN);
     if (index == -1) {
         puts("This books is not in the database");
@@ -58,7 +63,9 @@ void delete_book(Book_t *book_db_ptr, int *number_of_books) {
     (*number_of_books)--;
 }
 
-void book_info(Book_t *book_db_ptr, int number_of_books) {
+void book_info(Book_t *book_db_ptr, int number_of_books,
+               StudentBook_t *stud_book_db_ptr, int number_of_stud_books,
+               Student_t *stud_db_ptr, int number_of_students) {
     puts("Enter ISBN of a book you want to see");
     long ISBN = long_input();
     int index = book_index_by_isbn(book_db_ptr, number_of_books, ISBN);
@@ -68,10 +75,15 @@ void book_info(Book_t *book_db_ptr, int number_of_books) {
     }
     print_book_info(&book_db_ptr[index]);
 
-    // ДОДЕЛАТЬ ВЫВОД ПРО СТУДЕНТОВ, ВЗЯВШИХ КНИГУ                  <<------
-    // ДОДЕЛАТЬ ВЫВОД ПРО СТУДЕНТОВ, ВЗЯВШИХ КНИГУ                  <<------
-    // ДОДЕЛАТЬ ВЫВОД ПРО СТУДЕНТОВ, ВЗЯВШИХ КНИГУ                  <<------
-    // ДОДЕЛАТЬ ВЫВОД ПРО СТУДЕНТОВ, ВЗЯВШИХ КНИГУ                  <<------
+    puts("Students that have this book:");
+    for (int i = 0; i < number_of_stud_books; i++) {
+        if (stud_book_db_ptr[i].ISBN == ISBN) {
+            for (int j = 0; j < number_of_students; j++) {
+                if (!strcmp(stud_book_db_ptr[i].record_book_num, stud_db_ptr[j].record_book_num))
+                    printf("%s %s\n", stud_db_ptr[j].surname, stud_db_ptr[j].name);
+            }
+        }
+    }
 }
 
 void all_books_info(Book_t *book_db_ptr, int number_of_books) {
@@ -208,7 +220,7 @@ void receive_a_book(Book_t *book_db_ptr, int number_of_books,
 
     for (int i = 0; i < *number_of_student_books; i++) {
         if (stud_book_db_ptr[i].ISBN == ISBN &&
-        !strcmp(stud_book_db_ptr[i].record_book_num, record_book_num)) {
+            !strcmp(stud_book_db_ptr[i].record_book_num, record_book_num)) {
             for (int j = i; j < *number_of_student_books - 1; j++) {
                 stud_book_db_ptr[i] = stud_book_db_ptr[i + 1];
             }
