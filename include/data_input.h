@@ -20,6 +20,8 @@
 #define AUTHOR_SIZE 30
 #define TITLE_SIZE 30
 
+#define RETURN_DATE_SIZE 10
+
 int int_check(char *data);
 
 int int_input();

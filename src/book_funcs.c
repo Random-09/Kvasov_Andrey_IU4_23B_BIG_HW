@@ -18,11 +18,11 @@ void add_book(Book_t *book_db_ptr, int *number_of_books) {
     }
 
     puts("Enter author of a book");
-    char *author = (char *) malloc(AUTHOR_SIZE * sizeof(char ));
+    char *author = (char *) malloc(AUTHOR_SIZE * sizeof(char));
     str_input(author, AUTHOR_SIZE);
 
     puts("Enter title of a book");
-    char *title = (char *) malloc(TITLE_SIZE * sizeof(char ));
+    char *title = (char *) malloc(TITLE_SIZE * sizeof(char));
     str_input(title, TITLE_SIZE);
 
     puts("Enter total number of books");
@@ -56,7 +56,6 @@ void delete_book(Book_t *book_db_ptr, int *number_of_books) {
     free(book_db_ptr[*number_of_books].author);
     free(book_db_ptr[*number_of_books].title);
     (*number_of_books)--;
-    // realloc cannot decrease book_db memory correctly :(
 }
 
 void book_info(Book_t *book_db_ptr, int number_of_books) {
@@ -86,7 +85,7 @@ void print_book_info(Book_t *book) {
            book->ISBN, book->author, book->title, book->total_books, book->available_books);
 }
 
-void edit_book_info(Book_t *book_db_ptr, int number_of_students) {
+void edit_book_info(Book_t *book_db_ptr, int number_of_books, int number_of_students) {
     puts("Enter ISBN of a book you want to edit");
     long ISBN = long_input();
     int index = book_index_by_isbn(book_db_ptr, number_of_students, ISBN);
@@ -120,9 +119,9 @@ void edit_book_info(Book_t *book_db_ptr, int number_of_students) {
                 strcpy(book_db_ptr[index].title, title);
                 break;
             case TOTAL_BOOK_NUM:
-                // independent function in progress                         <<------
+                change_total_number_of_books(book_db_ptr, number_of_books);
                 break;
-            case EXIT:
+            case BOOK_EDIT_EXIT:
                 running = false;
                 break;
             default:
@@ -132,7 +131,7 @@ void edit_book_info(Book_t *book_db_ptr, int number_of_students) {
     }
 }
 
-void change_total_number_of_books(Book_t *book_db_ptr, int number_of_books) {       //      <<< total_num > 0 >>>
+void change_total_number_of_books(Book_t *book_db_ptr, int number_of_books) {
     puts("Enter ISBN of a book you want to change number of");
     long ISBN = long_input();
     int index = book_index_by_isbn(book_db_ptr, number_of_books, ISBN);
@@ -148,7 +147,75 @@ void change_total_number_of_books(Book_t *book_db_ptr, int number_of_books) {   
         total_books = int_input();
         tries_count++;
     } while (total_books < 0);
-
+    int delta = book_db_ptr[index].total_books - total_books;
+    book_db_ptr[index].total_books = total_books;
+    if (book_db_ptr[index].available_books + delta < 0)
+        book_db_ptr[index].available_books = 0;
+    else
+        book_db_ptr[index].available_books += delta;
 }
 
-void give_a_book(Book_t *book_db_ptr, int number_of) {}
+void give_a_book(Book_t *book_db_ptr, int number_of_books,
+                 StudentBook_t *stud_book_db_ptr, int *number_of_student_books) {
+    puts("Enter ISBN of a book you want to give");
+    long ISBN = long_input();
+    int index = book_index_by_isbn(book_db_ptr, number_of_books, ISBN);
+    if (index == -1) {
+        puts("This book is not in the database");
+        return;
+    }
+
+    if (book_db_ptr[index].available_books == 0) {
+        puts("There are no available books");
+        return;
+    }
+
+    char *record_book_num = NULL;
+    puts("Enter student's record book number");
+    str_input(record_book_num, RECORD_BOOK_NUM_SIZE);
+
+    char *return_date = NULL;
+    puts("Enter return date of a book");
+    str_input(return_date, RETURN_DATE_SIZE);
+
+    book_db_ptr[index].available_books--;
+    (*number_of_student_books)++;
+    realloc(stud_book_db_ptr, *number_of_student_books);
+    StudentBook_t book = {ISBN, record_book_num, return_date};
+    stud_book_db_ptr[*number_of_student_books - 1] = book;
+    puts("Book given successfully");
+}
+
+void receive_a_book(Book_t *book_db_ptr, int number_of_books,
+                    StudentBook_t *stud_book_db_ptr, int *number_of_student_books) {
+    puts("Enter ISBN of a book you want to receive");
+    long ISBN = long_input();
+    int index = book_index_by_isbn(book_db_ptr, number_of_books, ISBN);
+    if (index == -1) {
+        puts("This book is not in the database");
+        return;
+    }
+
+    char *record_book_num = NULL;
+    puts("Enter student's record book number");
+    str_input(record_book_num, RECORD_BOOK_NUM_SIZE);
+
+    if (book_db_ptr[index].available_books + 1 > book_db_ptr[index].total_books) {
+        puts("Number of total books exceeded");
+        return;
+    }
+    book_db_ptr[index].available_books++;
+
+    for (int i = 0; i < *number_of_student_books; i++) {
+        if (stud_book_db_ptr[i].ISBN == ISBN &&
+        !strcmp(stud_book_db_ptr[i].record_book_num, record_book_num)) {
+            for (int j = i; j < *number_of_student_books - 1; j++) {
+                stud_book_db_ptr[i] = stud_book_db_ptr[i + 1];
+            }
+            free(stud_book_db_ptr[*number_of_student_books].record_book_num);
+            free(stud_book_db_ptr[*number_of_student_books].return_date);
+            (*number_of_student_books)--;
+            return;
+        }
+    }
+}

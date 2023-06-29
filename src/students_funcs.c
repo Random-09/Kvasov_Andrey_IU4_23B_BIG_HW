@@ -64,7 +64,6 @@ void delete_student(Student_t *stud_db_ptr, int *number_of_students) {
     free(stud_db_ptr[*number_of_students].faculty);
     free(stud_db_ptr[*number_of_students].speciality);
     (*number_of_students)--;
-    // realloc cannot decrease student_db memory correctly :(
 }
 
 void edit_student_info(Student_t *stud_db_ptr, int number_of_students) {
